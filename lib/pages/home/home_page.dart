@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nubank_tutorial/pages/home/widgets/menu_app.dart';
 import 'package:nubank_tutorial/pages/home/widgets/my_app_bar.dart';
 import 'package:nubank_tutorial/pages/home/widgets/my_dots_app.dart';
 import 'package:nubank_tutorial/pages/home/widgets/page_view_app.dart';
@@ -34,9 +35,14 @@ class _HomePageState extends State<HomePage> {
           onTap: () {
             setState(() {
               _showMenu = !_showMenu;
-              _yPosition = _showMenu ? _screenHeigth * .75 : _screenHeigth * .24;
+              _yPosition =
+                  _showMenu ? _screenHeigth * .75 : _screenHeigth * .24;
             });
           },
+        ),
+        MenuApp(
+          top: _screenHeigth * 0.20,
+          showMenu: _showMenu,
         ),
         PageViewApp(
           top: _yPosition,
@@ -73,21 +79,18 @@ class _HomePageState extends State<HomePage> {
                     ? topPositionLimit
                     : _yPosition;
               }
-              _showMenu = details.delta.dy > 0;
-              // if(_yPosition == bottomPositionLimit)
-              // {
-              //   _showMenu = true;
-              // }
-              // else if(_yPosition == topPositionLimit)
-              // {
-              //   _showMenu = false;
-              // }
+              if (_yPosition == bottomPositionLimit) {
+                _showMenu = true;
+              } else if (_yPosition == topPositionLimit) {
+                _showMenu = false;
+              }
             });
           },
         ),
         MyDotsApp(
           top: _screenHeigth * 0.7,
           currentIndex: _currentIndex,
+          showMenu: _showMenu,
         ),
       ]),
     );
