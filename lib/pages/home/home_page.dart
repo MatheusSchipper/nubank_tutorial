@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _showMenu;
   int _currentIndex;
+  double _yPosition;
 
   @override
   void initState() {
@@ -22,6 +23,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double _screenHeigth = MediaQuery.of(context).size.height;
+
+    if (_yPosition == null) _yPosition = _screenHeigth * .24;
+
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(alignment: Alignment.topCenter, children: <Widget>[
@@ -30,14 +34,54 @@ class _HomePageState extends State<HomePage> {
           onTap: () {
             setState(() {
               _showMenu = !_showMenu;
+              _yPosition = _showMenu ? _screenHeigth * .75 : _screenHeigth * .24;
             });
           },
         ),
         PageViewApp(
-          top: _screenHeigth * .24,
+          top: _yPosition,
+          showMenu: _showMenu,
           onChanged: (index) {
             setState(() {
               _currentIndex = index;
+            });
+          },
+          onPanUpdate: (details) {
+            setState(() {
+              double bottomPositionLimit = _screenHeigth * .75;
+              double topPositionLimit = _screenHeigth * .24;
+              double middlePosition =
+                  (bottomPositionLimit - topPositionLimit) / 2;
+
+              _yPosition += details.delta.dy;
+
+              _yPosition =
+                  _yPosition < topPositionLimit ? topPositionLimit : _yPosition;
+
+              _yPosition = _yPosition > bottomPositionLimit
+                  ? bottomPositionLimit
+                  : _yPosition;
+
+              if (_yPosition != bottomPositionLimit && details.delta.dy > 0) {
+                _yPosition = _yPosition > topPositionLimit + middlePosition
+                    ? bottomPositionLimit
+                    : _yPosition;
+              }
+
+              if (_yPosition != topPositionLimit && details.delta.dy < 0) {
+                _yPosition = _yPosition < bottomPositionLimit - middlePosition
+                    ? topPositionLimit
+                    : _yPosition;
+              }
+              _showMenu = details.delta.dy > 0;
+              // if(_yPosition == bottomPositionLimit)
+              // {
+              //   _showMenu = true;
+              // }
+              // else if(_yPosition == topPositionLimit)
+              // {
+              //   _showMenu = false;
+              // }
             });
           },
         ),
