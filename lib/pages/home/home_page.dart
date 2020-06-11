@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nubank_tutorial/pages/home/widgets/menu_app.dart';
-import 'package:nubank_tutorial/pages/home/widgets/my_app_bar.dart';
-import 'package:nubank_tutorial/pages/home/widgets/my_dots_app.dart';
-import 'package:nubank_tutorial/pages/home/widgets/page_view_app.dart';
+
+import 'widgets/app_bar/my_app_bar.dart';
+import 'widgets/bottom_menu/bottom_menu.dart';
+import 'widgets/drop_down_menu/menu_app.dart';
+import 'widgets/page_view/my_dots_app.dart';
+import 'widgets/page_view/page_view_app.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,74 +27,81 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double _screenHeigth = MediaQuery.of(context).size.height;
 
-    if (_yPosition == null) _yPosition = _screenHeigth * .24;
+    if (_yPosition == null) _yPosition = _screenHeigth * .18;
 
     return Scaffold(
       backgroundColor: Colors.purple[800],
-      body: Stack(alignment: Alignment.topCenter, children: <Widget>[
-        MyAppBar(
-          showMenu: _showMenu,
-          onTap: () {
-            setState(() {
-              _showMenu = !_showMenu;
-              _yPosition =
-                  _showMenu ? _screenHeigth * .75 : _screenHeigth * .24;
-            });
-          },
-        ),
-        MenuApp(
-          top: _screenHeigth * 0.20,
-          showMenu: _showMenu,
-        ),
-        PageViewApp(
-          top: _yPosition,
-          showMenu: _showMenu,
-          onChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          onPanUpdate: (details) {
-            setState(() {
-              double bottomPositionLimit = _screenHeigth * .75;
-              double topPositionLimit = _screenHeigth * .24;
-              double middlePosition =
-                  (bottomPositionLimit - topPositionLimit) / 2;
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          MyAppBar(
+            showMenu: _showMenu,
+            onTap: () {
+              setState(() {
+                _showMenu = !_showMenu;
+                _yPosition =
+                    _showMenu ? _screenHeigth * .85 : _screenHeigth * .17;
+              });
+            },
+          ),
+          MenuApp(
+            top: _screenHeigth * 0.15,
+            showMenu: _showMenu,
+          ),
+          BottomMenu(
+            showMenu: _showMenu,
+          ),
+          MyDotsApp(
+            top: _screenHeigth * 0.7,
+            currentIndex: _currentIndex,
+            showMenu: _showMenu,
+          ),
+          PageViewApp(
+            top: _yPosition,
+            showMenu: _showMenu,
+            onChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            onPanUpdate: (details) {
+              setState(() {
+                double bottomPositionLimit = _screenHeigth * .85;
+                double topPositionLimit = _screenHeigth * .18;
+                double middlePosition =
+                    (bottomPositionLimit - topPositionLimit) / 2;
 
-              _yPosition += details.delta.dy;
+                _yPosition += details.delta.dy;
 
-              _yPosition =
-                  _yPosition < topPositionLimit ? topPositionLimit : _yPosition;
-
-              _yPosition = _yPosition > bottomPositionLimit
-                  ? bottomPositionLimit
-                  : _yPosition;
-
-              if (_yPosition != bottomPositionLimit && details.delta.dy > 0) {
-                _yPosition = _yPosition > topPositionLimit + middlePosition
-                    ? bottomPositionLimit
-                    : _yPosition;
-              }
-
-              if (_yPosition != topPositionLimit && details.delta.dy < 0) {
-                _yPosition = _yPosition < bottomPositionLimit - middlePosition
+                _yPosition = _yPosition < topPositionLimit
                     ? topPositionLimit
                     : _yPosition;
-              }
-              if (_yPosition == bottomPositionLimit) {
-                _showMenu = true;
-              } else if (_yPosition == topPositionLimit) {
-                _showMenu = false;
-              }
-            });
-          },
-        ),
-        MyDotsApp(
-          top: _screenHeigth * 0.7,
-          currentIndex: _currentIndex,
-          showMenu: _showMenu,
-        ),
-      ]),
+
+                _yPosition = _yPosition > bottomPositionLimit
+                    ? bottomPositionLimit
+                    : _yPosition;
+
+                if (_yPosition != bottomPositionLimit && details.delta.dy > 0) {
+                  _yPosition = _yPosition > topPositionLimit + middlePosition
+                      ? bottomPositionLimit
+                      : _yPosition;
+                }
+
+                if (_yPosition != topPositionLimit && details.delta.dy < 0) {
+                  _yPosition = _yPosition < bottomPositionLimit - middlePosition
+                      ? topPositionLimit
+                      : _yPosition;
+                }
+                if (_yPosition == bottomPositionLimit) {
+                  _showMenu = true;
+                } else if (_yPosition == topPositionLimit) {
+                  _showMenu = false;
+                }
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 }

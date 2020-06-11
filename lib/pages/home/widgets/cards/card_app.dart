@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CardApp extends StatelessWidget {
+  final Widget child;
+
+  const CardApp({Key key, this.child}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,6 +13,7 @@ class CardApp extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
         ),
+        child: child,
       ),
     );
   }

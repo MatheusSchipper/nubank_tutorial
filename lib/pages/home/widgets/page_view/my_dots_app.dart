@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nubank_tutorial/pages/home/widgets/my_dot_app.dart';
+
+import 'my_dot_app.dart';
 
 class MyDotsApp extends StatelessWidget {
   final int currentIndex;
