@@ -4,7 +4,6 @@ import 'package:nubank_tutorial/pages/home/widgets/cards/first_card.dart';
 import 'package:nubank_tutorial/pages/home/widgets/cards/second_card.dart';
 import 'package:nubank_tutorial/pages/home/widgets/cards/third_card.dart';
 
-
 class PageViewApp extends StatefulWidget {
   final double top;
   final ValueChanged<int> onChanged;
@@ -27,26 +26,14 @@ class _PageViewAppState extends State<PageViewApp> {
     super.initState();
     _tween = Tween<double>(
       begin: 150.0,
-      end: 150.0,
+      end: 0.0,
     );
-    delayAnimation();
-  }
-
-  Future delayAnimation() async {
-    await Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        _tween = Tween<double>(
-          begin: 150.0,
-          end: 0,
-        );
-      });
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
-        duration: Duration(milliseconds: 250),
+        duration: Duration(milliseconds: 300),
         curve: Curves.easeOutCubic,
         tween: _tween,
         builder: (context, value, child) {

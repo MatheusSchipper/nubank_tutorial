@@ -14,10 +14,14 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future delayToNavigate() async {
-    await Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return HomePage();
-      }));
+    return await Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(pageBuilder: (BuildContext context,
+            Animation animation, Animation secondaryAnimation) {
+          return HomePage();
+        }),
+      );
     });
   }
 

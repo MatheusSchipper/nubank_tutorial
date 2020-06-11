@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.7.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -32,6 +33,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  # image_path: "assets/images/icon-128x128.png"
+    image_path_android: "assets/icons/icon.png"
+    image_path_ios: "assets/icons/icon.png"
+    android: true # can specify file name here e.g. "ic_launcher"
+    ios: true # can specify file name here e.g. "My-Launcher-Icon"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,3 +83,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  
