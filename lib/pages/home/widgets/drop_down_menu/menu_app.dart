@@ -6,7 +6,11 @@ class MenuApp extends StatelessWidget {
   final double top;
   final bool showMenu;
 
-  const MenuApp({Key key, this.top, this.showMenu}) : super(key: key);
+  const MenuApp({
+    Key key,
+    this.top,
+    this.showMenu,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
