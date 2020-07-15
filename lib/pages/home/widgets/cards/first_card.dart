@@ -18,7 +18,8 @@ class FirstCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.only(
+                              top: 15.0, left: 15.0, bottom: 10.0),
                           child: Row(
                             children: [
                               Icon(
@@ -40,59 +41,62 @@ class FirstCard extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 20.0, top: 20, bottom: 20),
+                              left: 15.0, top: 15, bottom: 15),
                           child: SizedBox(
                             width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'FATURA ATUAL',
-                                  style: TextStyle(
-                                    color: Colors.teal[200],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'FATURA ATUAL',
+                                    style: TextStyle(
+                                      color: Colors.teal[200],
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    text: 'R\$ ',
-                                    children: [
-                                      TextSpan(
-                                          text: '600',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                      TextSpan(text: ',50'),
-                                    ],
-                                  ),
-                                  style: TextStyle(
-                                    color: Colors.teal[200],
-                                    fontSize: 28,
-                                  ),
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    text: 'Limite disponível ',
-                                    children: [
-                                      TextSpan(
-                                          text: 'R\$ 399,50',
-                                          style: TextStyle(
+                                  Text.rich(
+                                    TextSpan(
+                                      text: 'R\$ ',
+                                      children: [
+                                        TextSpan(
+                                            text: '600',
+                                            style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.lightGreen[400])),
-                                    ],
+                                            )),
+                                        TextSpan(text: ',50'),
+                                      ],
+                                    ),
+                                    style: TextStyle(
+                                      color: Colors.teal[200],
+                                      fontSize: 28,
+                                    ),
                                   ),
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  Text.rich(
+                                    TextSpan(
+                                      text: 'Limite disponível ',
+                                      children: [
+                                        TextSpan(
+                                            text: 'R\$ 399,50',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.lightGreen[400])),
+                                      ],
+                                    ),
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.04,
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
                       ],
                     ),

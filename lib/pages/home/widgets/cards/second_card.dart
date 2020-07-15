@@ -24,7 +24,7 @@ class _SecondCardState extends State<SecondCard>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -64,7 +64,7 @@ class _SecondCardState extends State<SecondCard>
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(left: 20.0, top: 20, bottom: 20),
+                        const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
                     child: SizedBox(
                       width: double.infinity,
                       child: Column(
@@ -109,7 +109,7 @@ class _SecondCardState extends State<SecondCard>
             child: Container(
               color: Colors.grey[200],
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

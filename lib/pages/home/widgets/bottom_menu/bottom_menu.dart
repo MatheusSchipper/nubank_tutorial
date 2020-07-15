@@ -37,7 +37,7 @@ class _BottomMenuState extends State<BottomMenu> {
                 : 0,
             left: value,
             right: value * -1,
-            height: MediaQuery.of(context).size.height * 0.135,
+            height: MediaQuery.of(context).size.height * 0.140,
             child: IgnorePointer(
               ignoring: widget.showMenu,
               child: AnimatedOpacity(
